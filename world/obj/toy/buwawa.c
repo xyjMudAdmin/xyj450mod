@@ -4,7 +4,7 @@
 // created by snowcat
 
 inherit ITEM;
-#include "message.h"
+#include "/d/obj/misc/message.h"
 
 void create()
 {

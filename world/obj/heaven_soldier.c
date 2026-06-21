@@ -39,8 +39,8 @@ void create()
 
 	setup();
 
-	carry_object(__DIR__"obj/golden_armor")->wear();
-	carry_object(__DIR__"obj/golden_sword")->wield();
+	carry_object(__DIR__"npc/obj/golden_armor")->wear();
+	carry_object(__DIR__"npc/obj/golden_sword")->wield();
 }
 
 int heal_up()

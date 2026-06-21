@@ -19,5 +19,5 @@ void create()
 }
 int is_container()
 {
-set("objects", (["/u/bula/gao/obj/kaoji"]) );
+	return 1;
 }

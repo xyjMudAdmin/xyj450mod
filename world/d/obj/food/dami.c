@@ -24,7 +24,6 @@ void create()
      set("eat_msg", "$N拿出几粒大米放到嘴里嚼了嚼，差点把牙崩调！\n");
                 set("material", "bone");
         }
-        init_unarmed(5);
         setup();
 }
 

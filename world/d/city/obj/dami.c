@@ -5,7 +5,7 @@
 
 #include <weapon.h>
 
-inherit UNARMED;
+inherit ITEM;
 inherit F_FOOD;
 
 void create()
@@ -26,7 +26,6 @@ void create()
 "$N拿出几粒大米放到嘴里嚼了嚼，差点把牙崩调！\n");
                 set("material", "bone");
         }
-        init_unarmed(5);
         setup();
 }
 

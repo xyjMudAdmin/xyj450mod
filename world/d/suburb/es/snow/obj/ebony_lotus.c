@@ -16,7 +16,7 @@ void create()
 		set("unit", "块");
 		set("value", 30000);
 		set("food_remaining", 1);
-		set("eat_func", (: eat_tonic :) );
+		//set("eat_func", (: eat_tonic :) );
 		set("tonic", ([ "force": 60, "max_force": 2000 ]) );
 		set("food_supply", 100);
 	}

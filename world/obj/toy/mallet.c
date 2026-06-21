@@ -8,7 +8,7 @@
 
 inherit HAMMER;
 
-#include "message.h"
+#include "/d/obj/misc/message.h"
 
 void create()
 {

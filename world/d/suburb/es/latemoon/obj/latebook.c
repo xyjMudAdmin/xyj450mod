@@ -24,7 +24,7 @@ TEXT
 ]));
 
       set("objects", ([
-          __DIR__"npc/girl" : 1 ]) );
+          "/d/suburb/es/latemoon/npc/girl" : 1 ]) );
 	setup();
 	replace_program(ROOM);
 }
