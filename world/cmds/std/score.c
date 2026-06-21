@@ -197,6 +197,7 @@ ob->max_water_capacity(), ob->max_water_capacity(), CYN) + "\n";
         line += sprintf(" 神  数： " HIM "%-9d\n" NOR,ob->query("shen") );
         line += sprintf(" 潜  能： " HIY "%-9d" NOR "            ",(int)ob->query("potential") -(int)ob->query("learned_points") );
         line += sprintf(" 评  价： " HIC "%-9d\n" NOR,ob->query("score") );
+        line += sprintf(" 武学境界： " HIG "%s" NOR "\n", RANK_D->describe_exp((int)ob->query("combat_exp")) );
 
         write(line);
         return 1;

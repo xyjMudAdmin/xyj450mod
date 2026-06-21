@@ -5,6 +5,58 @@
 
 #include <ansi.h>
 
+// ---- 武学境界 (combat_exp rank tiers), ported from xyj2006 ----
+string *exp_level_desc = ({
+                BLU "初学乍练" NOR,
+                BLU "不知所以" NOR,
+                BLU "粗通皮毛" NOR,
+                HIB "略识之无" NOR,
+                HIB "渐有所悟" NOR,
+                HIB "半生不熟" NOR,
+                YEL "马马虎虎" NOR,
+                YEL "平淡无奇" NOR,
+                YEL "平平常常" NOR,
+                HIY "触类旁通" NOR,
+                HIY "心领神会" NOR,
+                HIY "深入浅出" NOR,
+                HIM "挥洒自如" NOR,
+                HIM "驾轻就熟" NOR,
+                HIM "出类拔萃" NOR,
+                HIR "初入佳境" NOR,
+                HIR "神乎其技" NOR,
+                HIR "威不可当" NOR,
+                MAG "出神入化" NOR,
+                MAG "豁然贯通" NOR,
+                MAG "超群绝伦" NOR,
+                CYN "登峰造极" NOR,
+                CYN "卓然大家" NOR,
+                CYN "一代宗师" NOR,
+                HIC "独步天下" NOR,
+                HIC "空前绝后" NOR,
+                HIC "旷古绝伦" NOR,
+                WHT "登堂入室" NOR,
+                WHT "超凡入圣" NOR,
+                WHT "返璞归真" NOR,
+                HIW "深不可测" NOR
+});
+
+string describe_exp(int value)
+{
+        int grade, lvl , n;
+        
+        lvl = value/100;
+        //note, this is to make 深不可测 requires 2700k combat_exp,
+        //which also means player can learn skill level to 300.
+
+        for(grade=0; grade<sizeof(exp_level_desc); grade++) 
+        {
+                n = (grade+1)*(grade+1)*(grade+1);
+                if( lvl<n ) break;
+        }
+        if( grade>=sizeof(exp_level_desc) ) grade=sizeof(exp_level_desc)-1;
+        return exp_level_desc[grade];
+}
+
 string query_rank(object ob)
 {
    if(strlen(ob->query("added_title"))<1) ob->set("added_title", "未设");
