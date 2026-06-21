@@ -26,6 +26,7 @@ LONG);
   ]));
   set("objects", ([ /* sizeof() == 3 */
   __DIR__"npc/julingshen" : 1,
+  __DIR__"npc/litianwang" : 1,
 ]));
 
   setup();
