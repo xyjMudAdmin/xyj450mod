@@ -62,8 +62,13 @@ string invocation(object who, int level)
         env=environment(me);
         guainame=me->query("name")+"("+me->query("id")+")";
         where=guainame;
-        if(env)
-          where+="在"+env->query("short");
+        if(env) {
+	    string region = query_region(spawn_region_dir);
+	    if(region)
+		where += "在" + region + "（" + env->query("short") + "一带）";
+	    else
+		where += "在" + env->query("short");
+	}
 
         if(query("daoxing")>10000 ||
                 query("combat_exp")>10000)

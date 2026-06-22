@@ -181,6 +181,7 @@ string *names4 = ({
 });
 
 int yaoguai_type=0;
+string spawn_region_dir=0;   // records which dirs[] region the demon spawned in
 
 int random_place(object me, string* dirs);
 void _leave();
@@ -393,6 +394,7 @@ int random_place(object me, string* dirs)
 		   continue;
 
                if(me->move(newob)) {
+		   spawn_region_dir = dirs[i];   // remember the region directory
 		   message_vision("$N走了过来。\n",me);
 		   return 1;
 	       }
@@ -430,6 +432,65 @@ void leave2()
     if(this_object()) {
 	destruct(this_object());
     }
+}
+
+// Map a spawn directory (from dirs1/dirs2/dirs3) to a player-facing
+// region name -- the kind of broad place listed under "help maps".
+// Returns 0 if the directory is unknown, so the caller can fall back
+// to the specific room's short name.
+string query_region(string dir)
+{
+    mapping m = ([
+        // ---- dirs1 (core / Chang'an & nearby) ----
+        "/d/city"            : "长安城",
+        "/d/westway"         : "长安西部",
+        "/d/eastway"         : "长安东部",
+        "/d/kaifeng"         : "开封城",
+        "/d/lingtai"         : "方寸山",
+        "/d/moon"            : "月宫",
+        "/d/gao"             : "高老庄",
+        "/d/sea"             : "东海龙宫",
+        "/d/nanhai"          : "南海普陀山",
+        "/d/penglai"         : "蓬莱仙境",
+        "/d/ourhome/honglou" : "红楼大观园",
+        // ---- dirs2 (qujing road + outskirts) ----
+        "/d/xueshan"            : "大雪山",
+        "/d/qujing/wuzhuang"    : "五庄观",
+        "/d/qujing/baotou"      : "豹头山",
+        "/d/qujing/baoxiang"    : "宝象国",
+        "/d/qujing/bibotan"     : "碧波潭",
+        "/d/qujing/biqiu"       : "比丘国",
+        "/d/qujing/chechi"      : "车迟国",
+        "/d/qujing/dudi"        : "毒敌山",
+        "/d/qujing/fengxian"    : "凤仙郡",
+        "/d/qujing/firemount"   : "火焰山",
+        "/d/qujing/jilei"       : "积雷山",
+        "/d/qujing/jindou"      : "金兜山",
+        "/d/qujing/jingjiling"  : "荆棘岭",
+        "/d/qujing/jinping"     : "金平府",
+        "/d/qujing/jisaiguo"    : "祭赛国",
+        "/d/qujing/maoying"     : "毛颖山",
+        "/d/qujing/nuerguo"     : "西梁女国",
+        "/d/qujing/pingding"    : "平顶山",
+        "/d/qujing/pansi"       : "盘丝岭",
+        "/d/qujing/tongtian"    : "通天河",
+        "/d/qujing/qilin"       : "麒麟山",
+        "/d/qujing/qinfa"       : "钦法国",
+        "/d/qujing/qinglong"    : "青龙山",
+        "/d/qujing/tianzhu"     : "天竺国",
+        "/d/qujing/wudidong"    : "无底洞",
+        "/d/qujing/wuji"        : "乌鸡国",
+        "/d/qujing/xiaoxitian"  : "小西天",
+        "/d/qujing/yinwu"       : "隐雾山",
+        "/d/qujing/yuhua"       : "玉华县",
+        "/d/qujing/zhujie"      : "竹节山",
+        "/d/qujing/zhuzi"       : "朱紫国",
+        // ---- dirs3 (high-level) ----
+        "/d/death"              : "幽冥地府",
+        "/d/meishan"            : "灌江口",
+        "/d/qujing/lingshan"    : "灵山",
+    ]);
+    return m[dir];
 }
 
 string invocation(object who, int level)
@@ -544,8 +605,13 @@ string _invocation(object who, int level)
 	env=environment(me);
 	where=me->query("name")+"("+
 	    capitalize(me->query("id"))+")";
-	if(env)
-	  where+="在"+env->query("short");
+	if(env) {
+	    string region = query_region(spawn_region_dir);
+	    if(region)
+		where += "在" + region + "（" + env->query("short") + "一带）";
+	    else
+		where += "在" + env->query("short"); // unknown region: room name only
+	}
 	return where;
 }
 
