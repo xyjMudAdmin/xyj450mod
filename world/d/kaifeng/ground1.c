@@ -5,7 +5,7 @@
 
 inherit __DIR__"ground0";
 
-#include <ground.h>
+#include "ground.h"
 
 string report_mode()
 {

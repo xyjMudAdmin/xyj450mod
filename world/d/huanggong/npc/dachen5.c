@@ -5,7 +5,7 @@
 
 inherit NPC;
 
-#include <reporting.h>
+#include "reporting.h"
 
 void create()
 {

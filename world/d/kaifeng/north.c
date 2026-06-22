@@ -5,7 +5,7 @@
 
 inherit ROOM;
 
-#include <guanli.h>
+#include "guanli.h"
 
 void create ()
 {

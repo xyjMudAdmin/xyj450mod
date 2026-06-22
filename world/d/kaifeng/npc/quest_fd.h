@@ -4,7 +4,7 @@
 // by snowcat jan 22 1998
 
 #include <ansi.h>
-#include <quest.h>
+#include "quest.h"
 
 // the quest format is the following mapping:
 // daoxing :     type     name     id            object         amount

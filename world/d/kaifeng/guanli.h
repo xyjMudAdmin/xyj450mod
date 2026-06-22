@@ -4,7 +4,7 @@
 // create by snowcat.c 2/8/1997
 
 #include <command.h>
-#include <ground.h>
+#include "ground.h"
 
 void init ()
 {

@@ -3,7 +3,7 @@
  
 inherit NPC;
 
-#include <allnpc.h>
+#include "allnpc.h"
 
 void create()
 {
