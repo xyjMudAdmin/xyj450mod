@@ -37,6 +37,8 @@ void create()
 void init()
 {
    object me = this_object();
+   if (me->query_temp("zm_in_init")) return;
+   me->set_temp("zm_in_init", 1);
 
    me->create_identity("/d/qujing/wudidong/npc/yushu", "/d/qujing/wudidong/houdong");
    
@@ -55,6 +57,7 @@ void init()
    ]) );
 
    me->setup();
+   me->delete_temp("zm_in_init");
 }
 
 void reset_me (object me)
