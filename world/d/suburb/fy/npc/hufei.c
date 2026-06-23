@@ -55,7 +55,7 @@ void create()
 	set("baodao_count",1);
     setup();
 	carry_object(__DIR__"obj/cwbdao")->wield();
-    carry_object("/d/suburb/fy/city/obj/cloth")->wear();
+    carry_object("/d/suburb/xkx/city/obj/cloth")->wear();
  
 }
 

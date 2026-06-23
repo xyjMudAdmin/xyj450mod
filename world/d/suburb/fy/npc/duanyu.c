@@ -62,6 +62,6 @@ void create()
 	
 	setup();
 	
-	carry_object("/d/suburb/fy/city/obj/gangjian");
+	carry_object("/d/suburb/xkx/city/obj/gangjian");
 	carry_object("/obj/cloth")->wear();
 }

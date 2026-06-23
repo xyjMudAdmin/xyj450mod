@@ -58,7 +58,7 @@ void create()
 
 	setup();
 
-	carry_object("/d/suburb/fy/city/obj/gangjian")->wield();
+	carry_object("/d/suburb/xkx/city/obj/gangjian")->wield();
 }
 
 void init()
