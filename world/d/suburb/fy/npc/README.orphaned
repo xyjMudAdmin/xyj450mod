@@ -1,0 +1,31 @@
+ORPHANED NPCs — NOT USED BY THIS GAME (Journey to the West / 西游记)
+====================================================================
+
+The 16 NPC files listed below are LEFTOVER CONTENT FROM A DIFFERENT MUD
+(a Fengyun / 风云 themed wuxia game). They are NOT part of 西游记 and are
+NOT loaded by any room, daemon, or spawner anywhere in this mudlib.
+
+Do NOT "fix" them:
+  - Each calls carry_object("/d/suburb/fy/city2/obj/jinduan")->wear()
+  - That item, and its entire directory /d/suburb/fy/city2/, were removed.
+  - There is NO correct substitute item. (jinzhuang in fy/fy/obj/ is the
+    Golden Lion Escort Agency uniform — a DIFFERENT, unrelated faction.
+    Do not point these NPCs at it; that would invent lore-wrong content.)
+  - Because nothing loads these NPCs, the missing-item error never fires
+    in normal play. It only appears if you manually `update` the files.
+
+If you ever want to revive any of these as Journey-to-the-West content,
+that is a deliberate authoring task (recreate/replace the item, wire the
+NPC into a room) — not a path-drift bug fix.
+
+The 16 orphaned files (filename -> character name, all from another MUD):
+  arnzh.c   温火          oscar.c   苏童
+  basic.c   花无缺        peter.c   风
+  doll.c    阿甘          rew.c     藏马
+  fcxy.c    温约红        rose.c    顾横波
+  five.c    五叶          sasa.c    黄咏蝶
+  goose.c   温乐          swh.c     水无痕
+  icom.c    阿康          wind.c    风云
+  jungu.c   水灵儿        wwl.c     欣云
+
+Documented during the load-sweep cleanup; intentionally left untouched.
