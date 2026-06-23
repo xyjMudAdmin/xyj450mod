@@ -37,26 +37,32 @@ void init()
 {
    object me = this_object();
 
+   if (me->query_temp("zm_in_init")) return;
+   me->set_temp("zm_in_init", 1);
+
    me->create_identity("/d/lingtai/npc/puti", "/d/lingtai/inside2");
-   
+
    add_action("do_bandage","bandage");
 
    if (me->query("current_player")=="none of us")
-     me->reset_me(me);    
+     me->reset_me(me);
    me->restore();
    me->fully_recover(me);
 
    me->set("inquiry", ([
      "name" : "嘿嘿，灵台方寸山，斜月三星洞，掌门大弟子！\n",
      "here" : "灵台隐乾坤，方寸托日月。\n",
-     "掌门大弟子" : (: zm_apply :),     
-     "掌门弟子" : (: zm_apply :),   
-     "大弟子" : (: zm_apply :),   
-     "掌门" : (: zm_apply :),    
+     "掌门大弟子" : (: zm_apply :),
+     "掌门弟子" : (: zm_apply :),
+     "大弟子" : (: zm_apply :),
+     "掌门" : (: zm_apply :),
    ]) );
 
    me->setup();
+
+   me->delete_temp("zm_in_init");
 }
+
 
 void reset_me (object me)
 {
@@ -366,10 +372,12 @@ int init_identity (object me, object master, object where)
    string *skillnames;
    int i;
 
+
+
    reset_eval_cost();
    me->setup();
 
-   me->move(where);
+   if (environment(me) != where) me->move(where);
    me->set("where",base_name(where));
 
    me->set("gender", master->query("gender") );
@@ -647,22 +655,22 @@ void master_announce (object me, object who, object ob)
 
 string query_save_file()
 {
-   string str = query("save_file");
+   string sfile = query("save_file");
    int i;
 
-   if (str)
-     return str;
+   if (sfile)
+     return sfile;
 
-   str = DATA_DIR+"zhangmen/zhangmen_"+query("current_master");
-   for (i = 0; i < sizeof(str); i++)
-     if (str[i]==' ') str[i] = '_';
+   sfile = DATA_DIR+"zhangmen/zhangmen_"+query("current_master");
+   for (i = 0; i < sizeof(sfile); i++)
+     if (sfile[i]==32) sfile[i] = 95;
 
-   return str;
+   return sfile;
 }
 
-void set_save_file(string str)
+void set_save_file(string sfile)
 {
-   set("save_file",str);
+   set("save_file",sfile);
 }
 
 int do_bandage(string arg)
@@ -701,7 +709,7 @@ void kill_ob(object ob)
    ::kill_ob(ob);
 }
 
-void create_identity (mixed master, mixed where)
+void create_identity (mixed master, mixed where_room)
 {
    object master_ob, where_ob;
 
@@ -717,12 +725,12 @@ void create_identity (mixed master, mixed where)
      master_ob->restore();
    }
 
-   if (objectp(where))
-     where_ob = where;
+   if (objectp(where_room))
+     where_ob = where_room;
    else
    {
-     call_other(where,"???");
-     where_ob = find_object(where);
+     call_other(where_room,"???");
+     where_ob = find_object(where_room);
    }
    init_identity (this_object(), master_ob, where_ob);
 }
@@ -733,5 +741,6 @@ string zname(object ob)
      return "掌门大师姐";
    else return "掌门大师兄";
 }
+
 
 
