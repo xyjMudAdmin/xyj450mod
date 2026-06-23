@@ -4,3 +4,5 @@
 .idea
 temp
 tmp
+*.bak
+*.bak-*
