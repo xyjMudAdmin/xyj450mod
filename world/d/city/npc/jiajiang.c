@@ -29,8 +29,8 @@ void create()
         set_skill("dodge", 40);
 
         setup();
-        carry_object("/d/city/npc/obj/changqiang")->wield();
-        carry_object("/d/city/npc/obj/bingfu")->wear();
+        carry_object("/d/obj/weapon/spear/changqiang")->wield();
+        carry_object("/d/city/obj/bingfu")->wear();
 }
 void init()
 {

@@ -23,7 +23,7 @@ void create()
    setup();
    add_money("silver", 10);
         carry_object("/d/obj/cloth/linen")->wear();
-   carry_object("/d/city/npc/obj/caidao")->wield();
+   carry_object("/d/city/obj/caidao")->wield();
 }
 
 
