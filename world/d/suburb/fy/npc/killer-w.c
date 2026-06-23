@@ -58,4 +58,5 @@ void create()
 
 	setup();
 
-	carry_object("/d/suburb/fy/xingxiu/obj/tiegun")->wield();
+	carry_object("/d/suburb/xkx/xingxiu/obj/tiegun")->wield();
+}
