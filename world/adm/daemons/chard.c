@@ -95,3 +95,30 @@ varargs object make_corpse(object victim, object killer)
 
    return corpse;
 }
+
+varargs object make_wutoucorpse(object corpse)
+{
+        string name, oldname;
+
+        sscanf(corpse->query("name"), "%s的尸体%*s", oldname);
+        corpse->set("oldname", oldname);
+        switch(corpse->query("gender")) {
+                case "男性": name = "无头男尸"; break;
+                case "女性": name = "无头女尸"; break;
+                default:     name = "性别不明的尸体"; break;
+        }
+        corpse->set("name", name);
+        corpse->set("id", ({ "wutou corpse" }));
+        return corpse;
+}
+
+varargs object make_toulu(object corpse)
+{
+        object toulu;
+
+        toulu = new("/d/obj/misc/toulu");
+        toulu->set("name", (string)corpse->query("oldname") + "的头颅");
+        toulu->set("gender", corpse->query("gender"));
+        toulu->set("age", corpse->query("age"));
+        return toulu;
+}
