@@ -108,7 +108,7 @@ varargs object make_wutoucorpse(object corpse)
                 default:     name = "性别不明的尸体"; break;
         }
         corpse->set("name", name);
-        corpse->set("id", ({ "wutou corpse" }));
+        corpse->set("id", "wutou corpse");
         return corpse;
 }
 
